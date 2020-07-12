@@ -16,9 +16,13 @@ int main(int argc, char const *argv[])
 bool test(){
     std::cout<<"Testing...\n";
     //int arr[5] = {10, 1, 8, 2, };
-    int arr[8] = {10,1,7,2,11,15,66,32};
+    int arr[8] = {10,1,7,2,15,66,32,0};
     int len = sizeof(arr)/sizeof(arr[0]);    //int - 4bits, sizeof(arr) = 4B * 5 = 20 bit
     mergesort(arr,0,len-1);
+    std::cout<<"Testing...\n";
+    for(int i=0;i<len;i++){
+    	std::cout<<"\n"<<arr[i];
+    }
     return true;
 }
     /*eg->[10,1,7,6]
@@ -52,12 +56,12 @@ void merge(int* inp,int start,int mid,int end){
     int rctr = mid+1;
     int ctr=0;
     //left 1,10, right 6,7
-    int buff[end+1] = {};
-    while (ctr<=end){
-        if(lctr==mid){
+    int buff[(end-start)+1] = {};
+    while (ctr<=(end-start)){
+        if(lctr>mid){
             buff[ctr] = inp[rctr];
             rctr++;
-        }else if(rctr == end){
+        }else if(rctr > end){
             buff[ctr] = inp[lctr];
             lctr++;
         }
@@ -68,6 +72,11 @@ void merge(int* inp,int start,int mid,int end){
             buff[ctr] = inp[lctr];
             lctr++;
         }
+        ctr++;
+    }
+    ctr=0;
+    for(int i=start;i<(end+1);i++){
+        inp[i] = buff[ctr];
         ctr++;
     }
     std::cout<<"End";

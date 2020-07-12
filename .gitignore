@@ -91,3 +91,4 @@ dkms.conf
 *.out
 *.app
 
+/Debug/
